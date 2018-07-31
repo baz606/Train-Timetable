@@ -1,3 +1,9 @@
 Problem B - Google Code Jam 2008
 
-Train Timetable
+Train Timetable -
+    The main approach I am taking in solving this problem is using an event driven system where an event denotes when a train
+    starts and ends its journey. For each departure and arrival, an event will be created which will be used to determine
+    whether an extra train will be needed at that station.
+
+
+// Main event loop
