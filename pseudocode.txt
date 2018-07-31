@@ -1,0 +1,3 @@
+Problem B - Google Code Jam 2008
+
+Train Timetable
