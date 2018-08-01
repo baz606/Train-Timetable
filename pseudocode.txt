@@ -1,3 +1,7 @@
+/*
+ * Created by Shehbaz Khan
+ */
+
 Problem B - Google Code Jam 2008
 
 Train Timetable -
@@ -5,5 +9,28 @@ Train Timetable -
     starts and ends its journey. For each departure and arrival, an event will be created which will be used to determine
     whether an extra train will be needed at that station.
 
+    Each event will have the following attributes:
+    - Trip type: NA or NB
+    - Time: in hours and minutes
+    - Type of event: Departure or Arrival
+
+    The program will also have the following variables:
+    - Turnover time
+    - Trains at A
+    - Trains at B
+
 
 // Main event loop
+// Assuming all events are sorted by time. Arrival comes before Departure if the times are similar.
+for event in eventList
+    if event.type = DEPARTURE
+        if event.tripType = NA
+            if trainsAtA > 0
+                trainsAtA--
+            else
+                trainsAtA++
+        else if event.tripType = NB
+            if transAtB > 0
+                trainsAtB--
+            else
+                trainsAtB++
