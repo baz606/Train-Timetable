@@ -20,17 +20,22 @@ Train Timetable -
     - Trains at B
 
 
-// Main event loop
-// Assuming all events are sorted by time. Arrival comes before Departure if the times are similar.
+// Main event loop for each case
+// Assuming all events are sorted by time. Arrival comes before Departure if the times are equal.
 for event in eventList
-    if event.type = DEPARTURE
-        if event.tripType = NA
-            if trainsAtA > 0
+    if event.type = DEPARTURE then
+        if event.tripType = NA then
+            if trainsAtA > 0 then
                 trainsAtA--
             else
                 trainsAtA++
-        else if event.tripType = NB
-            if transAtB > 0
+        else if event.tripType = NB then
+            if transAtB > 0 then
                 trainsAtB--
             else
                 trainsAtB++
+    else if event.type = ARRIVAL then
+        if event.tripType = NA then
+            trainsAtB++
+        else if event.tripType = NB
+            trainsAtA++
