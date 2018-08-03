@@ -19,8 +19,9 @@ int main()
 
     cin >> num_of_cases;
 
-    for(int i = 0; i < num_of_cases; ++i)
+    for(int i = 1; i <= num_of_cases; ++i)
     {
+        cout << "Case #" << i << endl;
         cin >> turn_over >> NA >> NB;
 
         for(int j = 0; j < NA; ++j)
@@ -41,6 +42,7 @@ int main()
             trainMaster.add_event(get_hours(time), get_minutes(time), "ARRIVAL", "NB");
         }
 
+        trainMaster.add_turnover_time(turn_over);
         trainMaster.print_event_list();
         trainMaster.clear_list();
     }

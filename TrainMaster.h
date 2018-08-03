@@ -15,6 +15,9 @@ public:
     void add_event(int hours, int minutes, string trip_type, string journey);
     void print_event_list();
     void clear_list();
+
+    void add_turnover_time(int turnover);
+
 private:
     vector<event> event_list;
 };

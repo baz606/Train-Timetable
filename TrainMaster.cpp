@@ -36,3 +36,23 @@ void TrainMaster::clear_list()
 {
     event_list.clear();
 }
+
+void TrainMaster::add_turnover_time(int turnover)
+{
+    for(event &e : event_list)
+    {
+        if(e.trip_type == "ARRIVAL")
+        {
+            e.time.minutes += turnover;
+            while(e.time.minutes >= 60)
+            {
+                e.time.hours++;
+                if(e.time.hours > 23)
+                {
+                    e.time.hours = 0;
+                }
+                e.time.minutes -= 60;
+            }
+        }
+    }
+}
