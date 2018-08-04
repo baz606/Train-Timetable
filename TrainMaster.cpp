@@ -3,6 +3,9 @@
 //
 
 #include "TrainMaster.h"
+#include "algorithm"
+
+using namespace std;
 
 void TrainMaster::add_event(int hours, int minutes, string trip_type, string journey)
 {
@@ -54,5 +57,31 @@ void TrainMaster::add_turnover_time(int turnover)
                 e.time.minutes -= 60;
             }
         }
+    }
+}
+
+void TrainMaster::sort_list()
+{
+    stable_sort(event_list.begin(), event_list.end(), compareEvents);
+}
+
+bool TrainMaster::compareEvents(const event &ev1, const event &ev2)
+{
+    if (ev1.time.hours < ev2.time.hours)
+    {
+        return true;
+    }
+    else if(ev1.time.hours > ev2.time.hours)
+    {
+        return false;
+    }
+    else if(ev1.time.hours == ev2.time.hours)
+    {
+        if(ev1.time.minutes == ev2.time.minutes)
+        {
+            return ev1.trip_type < ev2.trip_type;
+        }
+
+        return ev1.time.minutes < ev2.time.minutes;
     }
 }

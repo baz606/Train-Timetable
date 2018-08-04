@@ -12,7 +12,7 @@ int get_minutes(string &time);
 
 int main()
 {
-    string time = "10:40";
+    string str_time;
     int num_of_cases;
     int turn_over, NA, NB;
     TrainMaster trainMaster;
@@ -26,23 +26,24 @@ int main()
 
         for(int j = 0; j < NA; ++j)
         {
-            cin >> time;
-            trainMaster.add_event(get_hours(time), get_minutes(time), "DEPARTURE", "NA");
+            cin >> str_time;
+            trainMaster.add_event(get_hours(str_time), get_minutes(str_time), "DEPARTURE", "NA");
 
-            cin >> time;
-            trainMaster.add_event(get_hours(time), get_minutes(time), "ARRIVAL", "NA");
+            cin >> str_time;
+            trainMaster.add_event(get_hours(str_time), get_minutes(str_time), "ARRIVAL", "NA");
         }
 
         for(int k = 0; k < NB; ++k)
         {
-            cin >> time;
-            trainMaster.add_event(get_hours(time), get_minutes(time), "DEPARTURE", "NB");
+            cin >> str_time;
+            trainMaster.add_event(get_hours(str_time), get_minutes(str_time), "DEPARTURE", "NB");
 
-            cin >> time;
-            trainMaster.add_event(get_hours(time), get_minutes(time), "ARRIVAL", "NB");
+            cin >> str_time;
+            trainMaster.add_event(get_hours(str_time), get_minutes(str_time), "ARRIVAL", "NB");
         }
 
         trainMaster.add_turnover_time(turn_over);
+        trainMaster.sort_list();
         trainMaster.print_event_list();
         trainMaster.clear_list();
     }
