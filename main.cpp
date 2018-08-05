@@ -23,7 +23,6 @@ int main()
 
     for(int i = 1; i <= num_of_cases; ++i)
     {
-        //cout << "Case #" << i << endl;
         trainsAtA = 0;
         trainsAtB = 0;
         cin >> turn_over >> NA >> NB;
@@ -51,7 +50,6 @@ int main()
         trainMaster.calculateStartingTrains(trainsAtA, trainsAtB);
 
         cout << "Case #" << i << ": " << trainsAtA << " " << trainsAtB << endl;
-        //trainMaster.print_event_list();
         trainMaster.clear_list();
     }
 
