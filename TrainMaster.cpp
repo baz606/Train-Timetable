@@ -38,6 +38,8 @@ TrainMaster::TrainMaster()
 void TrainMaster::clear_list()
 {
     event_list.clear();
+    readyTrainsAtA = 0;
+    readyTrainsAtB = 0;
 }
 
 void TrainMaster::add_turnover_time(int turnover)
@@ -50,10 +52,6 @@ void TrainMaster::add_turnover_time(int turnover)
             while(e.time.minutes >= 60)
             {
                 e.time.hours++;
-                if(e.time.hours > 23)
-                {
-                    e.time.hours = 0;
-                }
                 e.time.minutes -= 60;
             }
         }
@@ -83,5 +81,48 @@ bool TrainMaster::compareEvents(const event &ev1, const event &ev2)
         }
 
         return ev1.time.minutes < ev2.time.minutes;
+    }
+}
+
+void TrainMaster::calculateStartingTrains(int &trainsAtA, int &trainsAtB)
+{
+    for(event &e : event_list)
+    {
+        if(e.trip_type == "DEPARTURE")
+        {
+            if(e.journey == "NA")
+            {
+                if(readyTrainsAtA > 0)
+                {
+                    readyTrainsAtA--;
+                }
+                else
+                {
+                    trainsAtA++;
+                }
+            }
+            else if(e.journey == "NB")
+            {
+                if(readyTrainsAtB > 0)
+                {
+                    readyTrainsAtB--;
+                }
+                else
+                {
+                    trainsAtB++;
+                }
+            }
+        }
+        else if(e.trip_type == "ARRIVAL")
+        {
+            if(e.journey == "NA")
+            {
+                readyTrainsAtB++;
+            }
+            else if(e.journey == "NB")
+            {
+                readyTrainsAtA++;
+            }
+        }
     }
 }

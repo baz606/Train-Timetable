@@ -19,9 +19,12 @@ public:
 
     void add_turnover_time(int turnover);
     void sort_list();
+    void calculateStartingTrains(int &A, int &B);
 
 private:
     vector<event> event_list;
+    int readyTrainsAtA;
+    int readyTrainsAtB;
 };
 
 
